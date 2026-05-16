@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>vMenu Styled UI</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="scrollkit.css">
+</head>
+<body>
+  <div id="shell" class="shell hidden left">
+    <div class="menu-panel">
+      <div id="menuHeader" class="menu-header">
+        <div class="header-overlay"></div>
+        <div class="header-top">
+          <div class="brand-stack">
+            <img id="bannerLogo" class="banner-logo hidden" alt="logo">
+            <div class="brand-script" id="brandText">vMenu</div>
+          </div>
+          <div class="header-side">
+            <div class="mini-badge">vM</div>
+            <button id="closeBtn" class="icon-btn">◎</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-title-row">
+        <div class="menu-title" id="menuTitle">Main Menu</div>
+        <div class="menu-count" id="menuCount">1 / 1</div>
+      </div>
+
+      <div class="menu-list-wrap">
+        <div id="menuList" class="menu-list"></div>
+      </div>
+
+      <div class="scroll-indicator">⌃ ⌄</div>
+
+      <div class="description-box">
+        <div id="descriptionText">Press M to open or close the menu. Use the arrow keys to move, Enter to select, Backspace to go back, Escape to close, and F2 to toggle noclip.</div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <div id="modal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-title" id="modalTitle">Input</div>
+        <div id="modalFields" class="modal-fields"></div>
+        <div id="modalDisplayWrap" class="modal-display-wrap hidden">
+          <textarea id="modalDisplayText" class="modal-display" readonly></textarea>
+        </div>
+        <div class="modal-actions">
+          <button id="modalCopy" class="modal-btn secondary hidden">Copy</button>
+          <button id="modalCancel" class="modal-btn secondary">Cancel</button>
+          <button id="modalSubmit" class="modal-btn">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="menu-data.js"></script>
+  <script src="resource-commands.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
