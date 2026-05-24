@@ -1,0 +1,4 @@
+.menu-list::-webkit-scrollbar{width:8px;}
+.menu-list::-webkit-scrollbar-track{background:rgba(255,255,255,0.04);}
+.menu-list::-webkit-scrollbar-thumb{background:linear-gradient(180deg,rgba(92,181,255,.85),rgba(24,111,214,.85));border-radius:10px;}
+.menu-list{scrollbar-color:rgba(92,181,255,.85) rgba(255,255,255,.04);scrollbar-width:thin;}
