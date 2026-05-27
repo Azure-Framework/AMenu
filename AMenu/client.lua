@@ -3370,10 +3370,22 @@ RegisterNUICallback('exec', function(data, cb)
   cb({ ok = ok, message = message, state = buildState(false), extra = extra })
 end)
 
-RegisterCommand('amenuui', function() setUi(not uiOpen) end, false)
-RegisterKeyMapping('amenuui', 'Open Styled AMenu UI', 'keyboard', 'M')
+local lastMenuToggleAt = 0
+local function toggleMenuUi()
+  local now = GetGameTimer()
+  if (now - lastMenuToggleAt) < 250 then return end
+  lastMenuToggleAt = now
+  setUi(not uiOpen)
+end
+
+RegisterCommand('amenuui', toggleMenuUi, false)
+RegisterCommand('+amenuui', toggleMenuUi, false)
+RegisterCommand('-amenuui', function() end, false)
+RegisterKeyMapping('+amenuui', 'Open Styled AMenu UI', 'keyboard', tostring(GetConvar('amenu_menu_toggle_key', 'M')))
 RegisterCommand('amenuui_noclip', function() handleToggle('noclip') end, false)
-RegisterKeyMapping('amenuui_noclip', 'Toggle AMenu UI NoClip', 'keyboard', 'F2')
+RegisterCommand('+amenuui_noclip', function() handleToggle('noclip') end, false)
+RegisterCommand('-amenuui_noclip', function() end, false)
+RegisterKeyMapping('+amenuui_noclip', 'Toggle AMenu UI NoClip', 'keyboard', tostring(GetConvar('amenu_noclip_toggle_key', 'F2')))
 
 AddEventHandler('onResourceStop', function(resource)
   if resource ~= GetCurrentResourceName() then return end
