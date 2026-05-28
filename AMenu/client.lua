@@ -3379,6 +3379,7 @@ local function toggleMenuUi()
 end
 
 RegisterCommand('amenuui', toggleMenuUi, false)
+RegisterCommand('amenu', toggleMenuUi, false)
 RegisterCommand('+amenuui', toggleMenuUi, false)
 RegisterCommand('-amenuui', function() end, false)
 RegisterKeyMapping('+amenuui', 'Open Styled AMenu UI', 'keyboard', tostring(GetConvar('amenu_menu_toggle_key', 'M')))
@@ -3386,6 +3387,27 @@ RegisterCommand('amenuui_noclip', function() handleToggle('noclip') end, false)
 RegisterCommand('+amenuui_noclip', function() handleToggle('noclip') end, false)
 RegisterCommand('-amenuui_noclip', function() end, false)
 RegisterKeyMapping('+amenuui_noclip', 'Toggle AMenu UI NoClip', 'keyboard', tostring(GetConvar('amenu_noclip_toggle_key', 'F2')))
+
+CreateThread(function()
+  while true do
+    if not uiOpen and not IsPauseMenuActive() and (IsControlJustPressed(0, 244) or IsDisabledControlJustPressed(0, 244)) then
+      toggleMenuUi()
+      Wait(300)
+    elseif uiOpen and (IsControlJustPressed(0, 244) or IsDisabledControlJustPressed(0, 244)) then
+      toggleMenuUi()
+      Wait(300)
+    else
+      Wait(0)
+    end
+  end
+end)
+
+CreateThread(function()
+  Wait(1000)
+  pcall(function()
+    TriggerEvent('chat:addSuggestion', '/amenu', 'Open AMenu')
+  end)
+end)
 
 AddEventHandler('onResourceStop', function(resource)
   if resource ~= GetCurrentResourceName() then return end

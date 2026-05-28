@@ -2171,7 +2171,7 @@ weatherOptions: () => ({
     return commands
       .filter(cmd => cmd && (cmd.command || cmd.name || cmd.label))
       .map(cmd => {
-        const name = String(cmd.command || cmd.name || cmd.label || '').replace(/^\
+        const name = String(cmd.command || cmd.name || cmd.label || '').replace(/^\/+/, '');
         const source = String(cmd.source || 'unknown');
         const resource = String(cmd.resource || source || 'unknown');
         return {
